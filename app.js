@@ -3,9 +3,11 @@ const bodyParser = require("body-parser");
 const request = require("request");
 const app = express();
 const https = require("https");
-const API_KEY="49e87e3180eda1170bc3a99217b68079-us12";
+const API_KEY="395d8ecd46f2735be609ea8570776d8d-us12";
+
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }))
+
 
 app.get("/", function (req, res) {
     res.sendFile(__dirname + "/signup.html")
@@ -47,7 +49,10 @@ app.post("/", function (req, res) {
         // console.log(response)
         
         if(response.statusCode === 200) {
-            res.sendFile(__dirname+"/success.html")
+
+            const theHomeMag="https://www.thehomemag.com/";
+            res.redirect(theHomeMag);
+
         }else{
             res.sendFile(__dirname+"/failure.html")
         }
@@ -59,10 +64,3 @@ app.post("/", function (req, res) {
     request.write(jsonData);
     request.end();
 })
-
-
-//listID
-//355d90f401
-
-//API KEY
-//49e87e3180eda1170bc3a99217b68079-us12
